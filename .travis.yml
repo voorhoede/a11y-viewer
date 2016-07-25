@@ -1,0 +1,23 @@
+sudo: false
+language: node_js
+node_js:
+- '5.0'
+cache:
+  directories:
+  - node_modules
+branches:
+  only:
+  - master
+notifications:
+  email: false
+before_script:
+- npm prune
+script:
+- npm run build
+after_script:
+- bash ./scripts/deploy.sh
+env:
+  global:
+  - GH_USER: voorhoede
+  - GH_REPO: a11y-viewer
+  - secure: AxYJcKvQ+yZly02q6438NTQfRF0zqiKq/038S8RUW29CxG8A7qGFPt8al6I2x6ezYfBNZvBVoOzN5+famoj8uhOtrqo8BwiEyGiOLjchHFg9GdArCst1YXIe3hkRqdyS2bEQr8wirmvJOsUnXkZQjvY4DxwwA68d3IK+EevrVtu/SvOAfSJVJLAHvnDLxyGwRGr6xhnmDSESTgdj2aEckmWUZ3In3EzpsZwgI4hrs85MmzeAz65hYWVqLT4OcW8LKCemXkisnGG4EKm96p4G63n0mDz5s6SGIDTAn9XxFrM0HllVqSmMsWdnw9pBHOqGdqjUgpiyO/RKjaH4E4WfTXfnX6i6zef6snyiMUp8ETRmkXi9oRVDckWzdi0tVUKcbviPpSPPDwdE2eKljRk/I30kIHvSMe8cD5c7IpMHE6oJrK66Hzt6X9wvNf0gepFL4xtrHhCxKJ0Ac3Ok9XJgdZzsFMklMyoJ6g1f0Rs1RtR1bALCYSXmjbu+wDQK65ca/IT2l7ZMd0kCQVZBpDvBIClkuaTXiNIZWp/PKxzIJwdrEHvBCpGLtt3s+x6D4hPTxa3D8ivvqs05h7ImpIr+zWqjP/sbU234zH3vpZ9V0F3sjHrbxHT8IroyV+cIlRCKjViSLnzDkbAxRFq09B3UQ/VIoCVTyfmkyKfkjXpJBVs=
