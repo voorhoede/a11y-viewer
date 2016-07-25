@@ -4,7 +4,7 @@ Simulate blindness, color blindness and disability to use mouse.
 
 ## Demo
 
-Checkout the live demo!
+Checkout the [live demo!](https://voorhoede.github.io/a11y-viewer/)
 
 ## Run it locally
 
