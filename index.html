@@ -1,1 +1,83 @@
-Placeholder page
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A11y Viewer</title>
+    <meta name="description" content="Emulate several forms of visual imparity for developing better accessible websites">
+    <meta name="keywords" content="a11y, emulator, visual imparity, color blindness">
+
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+<header class="app-header" data-collapsible-target>
+    <div id="click-stealer" class="click-stealer"></div>
+
+    <div class="a11y-toggler">
+        <button type="button" class="button open-menu" data-collapsible-handle>
+            <span class="a11y-sr-only">Open accessiblility viewer</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 100 100"><g fill="#231F20"><path d="M50 12.5c-20.7 0-37.5 16.8-37.5 37.5S29.3 87.5 50 87.5 87.5 70.7 87.5 50 70.7 12.5 50 12.5zm0 65c-15.2 0-27.6-12.3-27.6-27.5S34.8 22.4 50 22.4c15.2 0 27.6 12.4 27.6 27.6 0 15.2-12.4 27.6-27.6 27.6z"/><circle cx="49.6" cy="32.5" r="4.7"/><path d="M66 48.2l-9-9h-.2c-.4-.5-1-.7-1.5-.7H44.6c-.6 0-1 .2-1.5.6v.2l-9 9c-.4.4-.7 1-.7 1.4 0 1 1 2 2 2 .6 0 1-.2 1.4-.6l6.6-6.6c0-.2.3-.2.5-.2.4 0 .7.3.7.6v24.5c0 1.3 1 2.3 2.3 2.3 1.3 0 2.3-1 2.3-2.3V57c0-.4.3-.7.7-.7.4 0 .6.3.6.6v12.3c0 1.3 1 2.3 2.4 2.3 1.3 0 2.3-1 2.3-2.3V44.7c0-.4.3-.7.6-.7l.3.3 6.8 6.7c.4.4 1 .6 1.5.6 1 0 2-1 2-2 0-.5-.3-1-.6-1.4z"/></g></svg>
+        </button>
+
+        <button type="button" class="button close-menu" data-collapsible-handle>
+            <span class="a11y-sr-only">Close accessiblility viewer</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 100 100"><path fill="#231F20" d="M68 59.8L58.4 50l9.8-9.8c.5-.4.5-1 0-1.4l-6.8-7c-.4-.3-1-.3-1.4 0L50 42l-9.8-10c-.3-.2-1-.2-1.4 0l-7 7-.2.7c0 .3.2.5.3.7l9.7 9.8-9.8 9.8c-.3.2-.4.4-.4.7 0 .3 0 .5.3.7l6.8 7 .7.2c.3 0 .5-.2.7-.3l9.8-9.7 9.8 9.8c.2.3.4.4.7.4.3 0 .5 0 .7-.3l7-6.8c.3-.4.3-1 0-1.4z"/><path fill="#231F20" d="M50 22.4c15.2 0 27.6 12.4 27.6 27.6 0 15.2-12.4 27.6-27.6 27.6S22.4 65.2 22.4 50c0-15.2 12.4-27.6 27.6-27.6m0-10c-20.7 0-37.5 17-37.5 37.6 0 20.7 16.8 37.5 37.5 37.5S87.5 70.7 87.5 50 70.7 12.5 50 12.5z"/></svg>
+        </button>
+    </div>
+
+    <label class="module-selector-label" for="imparity-selector">
+        <span class="a11y-sr-only">Select level of visual imparity</span>
+        <select class="module-selector-select" id="imparity-selector" tabindex="-1">
+            <optgroup label="Visual imparity">
+                <option value="normal-vision">Normal vision</option>
+                <option value="moderate-visual-impairment">Moderate visual impairment</option>
+                <option value="severe-visual-impairment">Severe visual impairment</option>
+                <option value="blindness">Blindness</option>
+            </optgroup>
+        </select>
+        <span class="icon icon-expand-more"></span>
+    </label>
+
+    <label class="module-selector-label" for="color-blindness-selector">
+        <span class="a11y-sr-only">Select level of color blindness</span>
+        <select class="module-selector-select" id="color-blindness-selector" tabindex="-1">
+            <optgroup label="Color blindness">
+                <option value="normal">No color blindness</option>
+                <option value="protanopia">Protanopia(no red)</option>
+                <option value="protanomaly">Protanomaly(low red)</option>
+                <option value="deuteranopia">Deuteranopia(no green)</option>
+                <option value="deuteranomaly">Deuteranomaly(low green)</option>
+                <option value="tritanopia">Tritanopia(no blue)</option>
+                <option value="tritanomaly">Tritanomaly(low blue)</option>
+                <option value="achromatopsia">Achromatopsia(no color)</option>
+                <option value="achromatomaly">Achromatomaly(almost no color)</option>
+            </optgroup>
+        </select>
+        <span class="icon icon-expand-more"></span>
+    </label>
+
+    <span>
+        <input type="checkbox" id="click-stealer-toggler" tabindex="-1">
+        <label class="label-text" for="click-stealer-toggler">
+            Keyboard only
+        </label>
+    </span>
+
+    <form class="url-navigator">
+        <label for="url">
+            <span class="a11y-sr-only">What page do you want to view?</span>
+            <input type="text" id="url" placeholder="Enter url" tabindex="-1">
+        </label>
+
+        <button type="submit" class="button" tabindex="-1">GO</button>
+    </form>
+</header>
+
+<iframe src="http://voorhoede.nl" width="100%" height="100%"></iframe>
+
+<script src="index.js"></script>
+</body>
+</html>
