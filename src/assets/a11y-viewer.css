@@ -59,6 +59,16 @@ select:focus {
 }
 
 /* header */
+@media screen and (min-width: 1055px) {
+    .app-header > * {
+        float: left;
+    }
+
+    body .is-open.app-header {
+        height: 3em;
+    }
+}
+
 .app-header {
     height: var(--top-bar-height);
     background-color: var(--color-grey);
@@ -66,6 +76,7 @@ select:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     line-height: 3;
     overflow: hidden;
+    padding: 0 16px;
 }
 
 .is-open.app-header {
@@ -74,14 +85,8 @@ select:focus {
 
 .app-header > * {
     display: block;
-    margin-bottom: .25rem;
-    margin-left: 1rem;
-}
-
-@media screen and (min-width: 1055px) {
-    .app-header > * {
-        float: left;
-    }
+    width: 100%;
+    margin: 0 auto;
 }
 
 /* buttons */
@@ -105,6 +110,14 @@ select:focus {
 }
 
 /* checkbox */
+@media screen and (min-width: 1055px) {
+    .checkbox {
+        width: 16%;
+        float: left;
+        margin-left: 1em;
+    }
+}
+
 input[type="checkbox"] {
     border: 0;
     clip: rect(0 0 0 0);
@@ -142,6 +155,16 @@ input[type="checkbox"]:checked ~ .label-text:before {
 }
 
 /* select */
+@media screen and (min-width: 1055px) {
+    .module-selector-label {
+        width: calc(25%);
+    }
+
+    .module-selector-label:first-of-type {
+        margin-right: 1em;
+    }
+}
+
 .module-selector-select {
     height: 2.5rem; /* line-height has no effect on replaced elements */
     appearance: none;
@@ -151,6 +174,7 @@ input[type="checkbox"]:checked ~ .label-text:before {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
     padding-right: 2.5rem; /* make space for caret icon */
     padding-left: 1rem;
+    width: 100%;
 }
 
 .module-selector-select:hover {
@@ -189,6 +213,12 @@ input[type="checkbox"]:checked ~ .label-text:before {
 }
 
 /* iframe */
+@media screen and (min-width: 1055px) {
+    body .is-open ~ iframe {
+        top: 3em;
+    }
+}
+
 iframe {
     position: fixed;
     top: var(--top-bar-height);
@@ -215,7 +245,7 @@ iframe {
 
 .a11y-toggler .button {
     padding: 0 .25rem;
-    margin: .25rem .25rem 0;
+    margin: .25rem 0;
 }
 
 .is-open .button.open-menu {
@@ -239,14 +269,15 @@ iframe {
 /* navigator */
 @media screen and (min-width: 1055px) {
     .app-header .url-navigator {
+        width: calc(25% - 40px);
         float: right;
-        margin-right: 1rem;
     }
 }
 
 .url-navigator input {
     padding: 0 .5rem;
     height: 2.5rem;
+    width: calc(100% - 64px);
 }
 
 /* click stealer */
@@ -410,3 +441,4 @@ iframe {
 .achromatomaly {
     filter: url('svg-filters.svg#achromatomaly');
 }
+
