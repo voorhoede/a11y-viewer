@@ -4,6 +4,7 @@
 
     --top-bar-height: 3rem;
     --top-bar-open-height: 16rem;
+    --control-height: 2.5rem;
 
     --color-grey-light: #e8ecec;
     --color-grey: #d3d3d3;
@@ -15,6 +16,10 @@
 
 *, :after, :before {
     box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* allow iframe to take 100% height http://stackoverflow.com/a/27853830 */
 }
 
 body {
@@ -60,34 +65,32 @@ select:focus {
 
 /* header */
 .app-header {
-    height: var(--top-bar-height);
+    padding: 0.25rem;
     background-color: var(--color-grey);
     border-bottom: 1px solid var(--color-grey-dark);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    line-height: 3;
+    line-height: 2.5;
     overflow: hidden;
 }
 
-.is-open.app-header {
-    height: var(--top-bar-open-height);
+.controls {
+    display: none;
+    width: 100%;
 }
 
-.app-header > * {
+.is-open .controls {
     display: block;
-    margin-bottom: .25rem;
-    margin-left: 1rem;
 }
 
-@media screen and (min-width: 1055px) {
-    .app-header > * {
-        float: left;
-    }
+.controls > * {
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
 }
 
 /* buttons */
 .button {
     display: inline-block;
-    height: 2.5rem;
+    height: var(--control-height);
     padding: 0 1em;
     background-color: var(--color-grey-light);
     border: 1px solid transparent;
@@ -143,7 +146,7 @@ input[type="checkbox"]:checked ~ .label-text:before {
 
 /* select */
 .module-selector-select {
-    height: 2.5rem; /* line-height has no effect on replaced elements */
+    height: var(--control-height); /* line-height has no effect on replaced elements */
     appearance: none;
     background-color: var(--color-grey-light);
     border: 1px solid transparent;
@@ -161,7 +164,7 @@ input[type="checkbox"]:checked ~ .label-text:before {
 
 .module-selector-label {
     display: inline-block;
-    height: 2.5rem;
+    height: var(--control-height);
     position: relative; /* for absolute position of caret */
     background-color: #ccd5d7;
     cursor: pointer;
@@ -190,23 +193,16 @@ input[type="checkbox"]:checked ~ .label-text:before {
 
 /* iframe */
 iframe {
-    position: fixed;
-    top: var(--top-bar-height);
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
+    height: 100%;
     border: none;
-}
-
-.is-open ~ iframe {
-    top: var(--top-bar-open-height);
 }
 
 /* a11y toggler */
 .app-header .a11y-toggler {
     float: none;
     text-align: right;
-    height: var(--top-bar-height);
+    height: var(--control-height);
 }
 
 .a11y-toggler svg {
@@ -215,7 +211,6 @@ iframe {
 
 .a11y-toggler .button {
     padding: 0 .25rem;
-    margin: .25rem .25rem 0;
 }
 
 .is-open .button.open-menu {
@@ -230,26 +225,16 @@ iframe {
     display: inline-block;
 }
 
-@media screen and (min-width: 1055px) {
-    .app-header .a11y-toggler {
-        display: none;
-    }
-}
-
-/* navigator */
-@media screen and (min-width: 1055px) {
-    .app-header .url-navigator {
-        float: right;
-        margin-right: 1rem;
-    }
-}
-
 .url-navigator input {
     padding: 0 .5rem;
-    height: 2.5rem;
+    height: var(--control-height);
 }
 
 /* click stealer */
+.click-stealer-toggler {
+    display: inline-block;
+}
+
 .click-stealer {
     display: none;
 }
@@ -409,4 +394,25 @@ iframe {
 
 .achromatomaly {
     filter: url('svg-filters.svg#achromatomaly');
+}
+
+@media screen and (min-width: 1055px) {
+
+    .a11y-toggler {
+        display: none;
+    }
+
+    .controls {
+        display: block;
+    }
+
+    .controls > * {
+        float: left;
+        margin-bottom: 0;
+    }
+
+    .controls .url-navigator {
+        float: right;
+        margin-right: 1rem;
+    }
 }

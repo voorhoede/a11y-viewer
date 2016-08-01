@@ -28,55 +28,59 @@
         </button>
     </div>
 
-    <label class="module-selector-label" for="imparity-selector">
-        <span class="a11y-sr-only">Select level of visual imparity</span>
-        <select class="module-selector-select" id="imparity-selector" tabindex="-1">
-            <optgroup label="Visual imparity">
-                <option value="normal-vision">Normal vision</option>
-                <option value="moderate-visual-impairment">Moderate visual impairment</option>
-                <option value="severe-visual-impairment">Severe visual impairment</option>
-                <option value="blindness">Blindness</option>
-            </optgroup>
-        </select>
-        <span class="icon-expand-more"></span>
-    </label>
+    <div class="controls">
 
-    <label class="module-selector-label" for="color-blindness-selector">
-        <span class="a11y-sr-only">Select level of color blindness</span>
-        <select class="module-selector-select" id="color-blindness-selector" tabindex="-1">
-            <optgroup label="Color blindness">
-                <option value="normal">No color blindness</option>
-                <option value="protanopia">Protanopia(no red)</option>
-                <option value="protanomaly">Protanomaly(low red)</option>
-                <option value="deuteranopia">Deuteranopia(no green)</option>
-                <option value="deuteranomaly">Deuteranomaly(low green)</option>
-                <option value="tritanopia">Tritanopia(no blue)</option>
-                <option value="tritanomaly">Tritanomaly(low blue)</option>
-                <option value="achromatopsia">Achromatopsia(no color)</option>
-                <option value="achromatomaly">Achromatomaly(almost no color)</option>
-            </optgroup>
-        </select>
-        <span class="icon-expand-more"></span>
-    </label>
-
-    <span>
-        <input type="checkbox" id="click-stealer-toggler" tabindex="-1">
-        <label class="label-text" for="click-stealer-toggler">
-            Keyboard only
-        </label>
-    </span>
-
-    <form class="url-navigator">
-        <label for="url">
-            <span class="a11y-sr-only">What page do you want to view?</span>
-            <input type="text" id="url" placeholder="Enter url" tabindex="-1">
+        <label class="module-selector-label" for="imparity-selector">
+            <span class="a11y-sr-only">Select level of visual imparity</span>
+            <select class="module-selector-select" id="imparity-selector" tabindex="-1">
+                <optgroup label="Visual imparity">
+                    <option value="normal-vision">Normal vision</option>
+                    <option value="moderate-visual-impairment">Moderate visual impairment</option>
+                    <option value="severe-visual-impairment">Severe visual impairment</option>
+                    <option value="blindness">Blindness</option>
+                </optgroup>
+            </select>
+            <span class="icon-expand-more"></span>
         </label>
 
-        <button type="submit" class="button" tabindex="-1">GO</button>
-    </form>
+        <label class="module-selector-label" for="color-blindness-selector">
+            <span class="a11y-sr-only">Select level of color blindness</span>
+            <select class="module-selector-select" id="color-blindness-selector" tabindex="-1">
+                <optgroup label="Color blindness">
+                    <option value="normal">No color blindness</option>
+                    <option value="protanopia">Protanopia(no red)</option>
+                    <option value="protanomaly">Protanomaly(low red)</option>
+                    <option value="deuteranopia">Deuteranopia(no green)</option>
+                    <option value="deuteranomaly">Deuteranomaly(low green)</option>
+                    <option value="tritanopia">Tritanopia(no blue)</option>
+                    <option value="tritanomaly">Tritanomaly(low blue)</option>
+                    <option value="achromatopsia">Achromatopsia(no color)</option>
+                    <option value="achromatomaly">Achromatomaly(almost no color)</option>
+                </optgroup>
+            </select>
+            <span class="icon-expand-more"></span>
+        </label>
+
+        <span class="click-stealer-toggler">
+            <input type="checkbox" id="click-stealer-toggler" tabindex="-1">
+            <label class="label-text" for="click-stealer-toggler">
+                Keyboard only
+            </label>
+        </span>
+
+        <form class="url-navigator">
+            <label for="url">
+                <span class="a11y-sr-only">What page do you want to view?</span>
+                <input type="text" id="url" placeholder="Enter url" tabindex="-1">
+            </label>
+
+            <button type="submit" class="button" tabindex="-1">GO</button>
+        </form>
+
+    </div>
 </header>
 
-<iframe src="https://voorhoede.nl" width="100%" height="100%"></iframe>
+<iframe src="https://voorhoede.nl"></iframe>
 
 <script src="index.js"></script>
 </body>
