@@ -65,12 +65,26 @@ select:focus {
 
 /* header */
 .app-header {
+    display: none; /* hide when not enhanced */
     padding: 0.25rem;
     background-color: var(--color-grey);
     border-bottom: 1px solid var(--color-grey-dark);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     line-height: 2.5;
     overflow: hidden;
+}
+
+.is-enhanced .app-header {
+    display: block;
+}
+
+.update-browser {
+    padding: 1rem;
+    background: #EBC6B9;
+}
+
+.is-enhanced .update-browser {
+    display: none;
 }
 
 .controls {

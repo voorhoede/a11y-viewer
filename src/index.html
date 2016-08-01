@@ -80,8 +80,28 @@
     </div>
 </header>
 
+<div class="update-browser">
+    Accessibility viewer requires a browser that supports SVG filters and classList. To use this website you need to <a
+        href="http://outdatedbrowser.com/">update your browser</a>.
+</div>
+
 <iframe src="https://voorhoede.nl"></iframe>
 
-<script src="index.js"></script>
+<script>
+    (function () {
+
+        var SUPPORTS_CLASSLIST = ('classList' in document.body);
+        // borrowed from https://github.com/Modernizr/Modernizr/blob/master/feature-detects/svg/filters.js
+        var SUPPORTS_SVG_FILTERS = 'SVGFEColorMatrixElement' in window &&
+                SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE == 2;
+
+        // only enhance capable browsers
+        if (SUPPORTS_CLASSLIST && SUPPORTS_SVG_FILTERS) {
+            document.body.className += ' is-enhanced';
+            document.write('<script src="/index.js" defer><\/script>');
+        }
+    }());
+</script>
+
 </body>
 </html>
