@@ -1,7 +1,7 @@
 (function() {
     var imparitySelector = document.getElementById('imparity-selector');
     var colorBlindnessSelector = document.getElementById('color-blindness-selector');
-    var clickStealer = document.getElementById('click-stealer');
+    var main = document.getElementById('main');
     var clickStealerToggler = document.getElementById('click-stealer-toggler');
     var form = document.querySelector('form');
     var iframe = document.querySelector('iframe');
@@ -17,7 +17,7 @@
     });
 
     function toggleClickStealer() {
-        clickStealer.classList.toggle('is-enabled');
+        main.classList.toggle('is-disabled');
     }
 
     function emulateVisualImparity(event) {

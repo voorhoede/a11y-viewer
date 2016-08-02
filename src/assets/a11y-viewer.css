@@ -23,6 +23,8 @@ html, body {
 }
 
 body {
+    display: table;
+    width: 100%;
     margin: 0;
     font-family: sans-serif;
 }
@@ -75,10 +77,11 @@ select:focus {
 }
 
 .is-enhanced .app-header {
-    display: block;
+    display: table-row;
 }
 
 .update-browser {
+    display: table-row;
     padding: 1rem;
     background: #EBC6B9;
 }
@@ -205,11 +208,29 @@ input[type="checkbox"]:checked ~ .label-text:before {
     background-repeat: no-repeat;
 }
 
-/* iframe */
+main {
+    display: table-cell; /* ie10 doesn't render iframe with 100% height inside tablow-row, use table-cell instead */
+    height: 100%;
+    position: relative;
+}
+
 iframe {
+    position:relative; /* for absolute position of iframe.is-disabled:before */
+    display: block;
     width: 100%;
     height: 100%;
     border: none;
+}
+
+main.is-disabled:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
 }
 
 /* a11y toggler */
