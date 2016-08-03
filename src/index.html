@@ -13,14 +13,14 @@
 
     <script>
         (function () {
-            var SUPPORTS_CLASSLIST = ('classList' in document.body);
+            var SUPPORTS_CLASSLIST = ('classList' in document.documentElement);
             // borrowed from https://github.com/Modernizr/Modernizr/blob/master/feature-detects/svg/filters.js
             var SUPPORTS_SVG_FILTERS = ('SVGFEColorMatrixElement' in window &&
                     SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE == 2);
             var IS_CAPABLE_BROWSER = (SUPPORTS_CLASSLIST && SUPPORTS_SVG_FILTERS);
 
             if (IS_CAPABLE_BROWSER) {
-                document.body.classList.add('is-enhanced');
+                document.documentElement.classList.add('is-enhanced');
                 document.write('<script src="/index.js" defer><\/script>');
             }
         }());
