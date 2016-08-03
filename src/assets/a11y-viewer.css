@@ -2,8 +2,6 @@
     --moderate-blur: 1px;
     --severe-blur: 15px;
 
-    --top-bar-height: 3rem;
-    --top-bar-open-height: 16rem;
     --control-height: 2.5rem;
 
     --color-grey-light: #e8ecec;
@@ -274,24 +272,6 @@ iframe {
 /* click stealer */
 .click-stealer-toggler {
     display: inline-block;
-}
-
-.click-stealer {
-    display: none;
-}
-
-.click-stealer.is-enabled {
-    display: block;
-    z-index: 100;
-    position: fixed;
-    top: var(--top-bar-height);
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-.is-open .click-stealer.is-enabled {
-    top: var(--top-bar-open-height);
 }
 
 /* filters */
