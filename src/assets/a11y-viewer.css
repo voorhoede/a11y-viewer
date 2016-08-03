@@ -19,12 +19,12 @@
 }
 
 html, body {
-    height: 100%; /* allow iframe to take 100% height http://stackoverflow.com/a/27853830 */
+    height: 100%;
 }
 
 body {
-    display: table;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     font-family: sans-serif;
 }
@@ -73,15 +73,16 @@ select:focus {
     border-bottom: 1px solid var(--color-grey-dark);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     line-height: 2.5;
-    overflow: hidden;
 }
 
 .is-enhanced .app-header {
-    display: table-row;
+    display: block;
+    flex: 0 1 auto;
 }
 
 .update-browser {
-    display: table-row;
+    display: block;
+    flex: 0 1 auto;
     padding: 1rem;
     background: #EBC6B9;
 }
@@ -209,20 +210,19 @@ input[type="checkbox"]:checked ~ .label-text:before {
 }
 
 main {
-    display: table-cell; /* ie10 doesn't render iframe with 100% height inside tablow-row, use table-cell instead */
+    display: block; /* IE10 fix, otherwise no styles are applied */
+    flex: 1 1 auto;
     height: 100%;
-    position: relative;
+    position: relative; /* for absolute position of main.is-disabled:before */
+    overflow: hidden; /* prevent scrolling on .app-header */
 }
 
-iframe {
-    position:relative; /* for absolute position of iframe.is-disabled:before */
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: none;
+main.is-disabled {
+    pointer-events: none;
 }
 
 main.is-disabled:before {
+    /* put a blocking layer on top for browsers not supporting pointer-events: none */
     content: '';
     display: block;
     position: absolute;
@@ -231,6 +231,12 @@ main.is-disabled:before {
     bottom: 0;
     left: 0;
     z-index: 1;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 /* a11y toggler */
