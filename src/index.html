@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -15,12 +15,12 @@
         (function () {
             var SUPPORTS_CLASSLIST = ('classList' in document.body);
             // borrowed from https://github.com/Modernizr/Modernizr/blob/master/feature-detects/svg/filters.js
-            var SUPPORTS_SVG_FILTERS = 'SVGFEColorMatrixElement' in window &&
-                    SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE == 2;
+            var SUPPORTS_SVG_FILTERS = ('SVGFEColorMatrixElement' in window &&
+                    SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE == 2);
+            var IS_CAPABLE_BROWSER = (SUPPORTS_CLASSLIST && SUPPORTS_SVG_FILTERS);
 
-            // only enhance capable browsers
-            if (SUPPORTS_CLASSLIST && SUPPORTS_SVG_FILTERS) {
-                document.body.className += ' is-enhanced';
+            if (IS_CAPABLE_BROWSER) {
+                document.body.classList.add('is-enhanced');
                 document.write('<script src="/index.js" defer><\/script>');
             }
         }());
@@ -64,14 +64,14 @@
             <select class="module-selector-select" id="color-blindness-selector" tabindex="-1">
                 <optgroup label="Color blindness">
                     <option value="normal">No color blindness</option>
-                    <option value="protanopia">Protanopia(no red)</option>
-                    <option value="protanomaly">Protanomaly(low red)</option>
-                    <option value="deuteranopia">Deuteranopia(no green)</option>
-                    <option value="deuteranomaly">Deuteranomaly(low green)</option>
-                    <option value="tritanopia">Tritanopia(no blue)</option>
-                    <option value="tritanomaly">Tritanomaly(low blue)</option>
-                    <option value="achromatopsia">Achromatopsia(no color)</option>
-                    <option value="achromatomaly">Achromatomaly(almost no color)</option>
+                    <option value="protanopia">No red (Protanopia)</option>
+                    <option value="protanomaly">Low red (Protanomaly)</option>
+                    <option value="deuteranopia">No green (Deuteranopia)</option>
+                    <option value="deuteranomaly">Low green (Deuteranomaly)</option>
+                    <option value="tritanopia">No blue (Tritanopia)</option>
+                    <option value="tritanomaly">Low blue (Tritanomaly)</option>
+                    <option value="achromatopsia">No color (Achromatopsia)</option>
+                    <option value="achromatomaly">Almost no color (Achromatomaly)</option>
                 </optgroup>
             </select>
             <span class="icon-expand-more"></span>
@@ -86,7 +86,7 @@
 
         <form class="url-navigator">
             <label for="url">
-                <span class="a11y-sr-only">What page do you want to view?</span>
+                <span class="a11y-sr-only">What page (URL) do you want to view?</span>
                 <input type="text" id="url" placeholder="Enter url" tabindex="-1">
             </label>
 
@@ -97,8 +97,8 @@
 </header>
 
 <div class="update-browser">
-    Accessibility Viewer requires a browser that supports SVG filters and classList. If you can, <a
-        href="http://outdatedbrowser.com/">update your browser</a> to use Accessibility Viewer.
+    Your browser is unable to simulate impairments. If you can, <a href="http://outdatedbrowser.com/">update your browser</a>
+    to use Accessibility Viewer.
 </div>
 
 <main id="main">
