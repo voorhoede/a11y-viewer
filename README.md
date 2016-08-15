@@ -16,7 +16,7 @@ If you [install the a11y-viewer](#install) locally, you don't have these restric
 The a11y-viewer is written in [Node.js](http://nodejs.org/) and can be installed via [npm](https://npmjs.org/):
 
 ```bash
-npm install a11y-viewer
+npm install -g a11y-viewer
 ```
 
 ## Command Line usage
