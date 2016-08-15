@@ -77,3 +77,7 @@ Start a11y-viewer and **open in browser**:
 ```bash
 a11y-viewer https://www.voorhoede.nl --port 3000 --open
 ```
+
+## License
+
+[MIT licensed](LICENSE) © [De Voorhoede](https://www.voorhoede.nl/)
