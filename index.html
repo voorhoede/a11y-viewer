@@ -14,14 +14,23 @@
     <script>
         (function () {
             var SUPPORTS_CLASSLIST = ('classList' in document.documentElement);
-            // borrowed from https://github.com/Modernizr/Modernizr/blob/master/feature-detects/svg/filters.js
-            var SUPPORTS_SVG_FILTERS = ('SVGFEColorMatrixElement' in window &&
-                    SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE == 2);
-            var IS_CAPABLE_BROWSER = (SUPPORTS_CLASSLIST && SUPPORTS_SVG_FILTERS);
+            var SUPPORTS_CSS_FILTERS = isCssPropertySupported(['filter', 'webkitFilter'], 'blur(1px)');
+            var IS_CAPABLE_BROWSER = (SUPPORTS_CLASSLIST && SUPPORTS_CSS_FILTERS);
 
             if (IS_CAPABLE_BROWSER) {
                 document.documentElement.classList.add('is-enhanced');
                 document.write('<script src="index.js" defer><\/script>');
+            }
+
+            function isCssPropertySupported(properties, value) {
+                return properties.some(function (property) {
+                    var element = document.createElement('meta');
+                    element.style[property] = value;
+                    document.head.appendChild(element);
+                    var result = window.getComputedStyle(element)[property] === value;
+                    document.head.removeChild(element);
+                    return result;
+                });
             }
         }());
     </script>
