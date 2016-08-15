@@ -89,16 +89,16 @@ select:focus {
     display: none;
 }
 
-.controls {
+form {
     display: none;
     width: 100%;
 }
 
-.is-open .controls {
+.is-open form {
     display: block;
 }
 
-.controls > * {
+form > * {
     margin-bottom: 0.5rem;
     margin-left: 1rem;
 }
@@ -217,6 +217,7 @@ main {
 
 main.is-disabled {
     pointer-events: none;
+    user-select: none;
 }
 
 main.is-disabled:before {
@@ -277,73 +278,60 @@ iframe {
 /* filters */
 
 /* moderate visual impairment combinations */
-.moderate-visual-impairment {
+.moderate {
     filter: blur(var(--moderate-blur));
 }
-
-.moderate-visual-impairment.protanopia {
+.moderate.no-red {
     filter: url('svg-filters.svg#protanopia')  blur(var(--moderate-blur));
 }
-
-.moderate-visual-impairment.protanomaly {
+.moderate.low-red {
     filter: url('svg-filters.svg#protanomaly') blur(var(--moderate-blur));
 }
-
-.moderate-visual-impairment.deuteranopia {
+.moderate.no-green {
     filter: url('svg-filters.svg#deuteranopia') blur(var(--moderate-blur));
 }
-
-.moderate-visual-impairment.deuteranomaly {
+.moderate.low-green {
     filter: url('svg-filters.svg#deuteranomaly') blur(var(--moderate-blur));
 }
-
-.moderate-visual-impairment.tritanopia {
+.moderate.no-blue {
     filter: url('svg-filters.svg#tritanopia') blur(var(--moderate-blur));
 }
-
-.moderate-visual-impairment.tritanomaly {
+.moderate.low-blue {
     filter: url('svg-filters.svg#tritanomaly') blur(var(--moderate-blur));
 }
-
-.moderate-visual-impairment.achromatopsia {
+.moderate.no-color {
     filter: url('svg-filters.svg#achromatopsia') blur(var(--moderate-blur));
 }
-
-.moderate-visual-impairment.achromatomaly {
+.moderate.almost-no-color {
     filter: url('svg-filters.svg#achromatomaly') blur(var(--moderate-blur));
 }
 
 /* severe visual impairment combinations */
-
-.severe-visual-impairment {
+.severe {
    filter: blur(var(--severe-blur));
 }
-
-.severe-visual-impairment.protanomaly {
+.severe.no-red {
+    filter: url('svg-filters.svg#protanopia') blur(var(--severe-blur));
+}
+.severe.low-red {
     filter: url('svg-filters.svg#protanomaly') blur(var(--severe-blur));
 }
-
-.severe-visual-impairment.deuteranopia {
+.severe.no-green {
     filter: url('svg-filters.svg#deuteranopia') blur(var(--severe-blur));
 }
-
-.severe-visual-impairment.deuteranomaly {
+.severe.low-green {
     filter: url('svg-filters.svg#deuteranomaly') blur(var(--severe-blur));
 }
-
-.severe-visual-impairment.tritanopia {
+.severe.no-blue {
     filter: url('svg-filters.svg#tritanopia') blur(var(--severe-blur));
 }
-
-.severe-visual-impairment.tritanomaly {
+.severe.low-blue {
     filter: url('svg-filters.svg#tritanomaly') blur(var(--severe-blur));
 }
-
-.severe-visual-impairment.achromatopsia {
+.severe.no-color {
     filter: url('svg-filters.svg#achromatopsia') blur(var(--severe-blur));
 }
-
-.severe-visual-impairment.achromatomaly {
+.severe.almost-no-color {
     filter: url('svg-filters.svg#achromatomaly') blur(var(--severe-blur));
 }
 
@@ -351,69 +339,54 @@ iframe {
 .blindness {
     filter: brightness(0);
 }
-
-.blindness.protanopia {
+.blindness.no-red {
     filter: url('svg-filters.svg#protanopia') brightness(0);
 }
-
-.blindness.protanomaly {
+.blindness.low-red {
     filter: url('svg-filters.svg#protanomaly') brightness(0);
 }
-
-.blindness.deuteranopia {
+.blindness.no-green {
     filter: url('svg-filters.svg#deuteranopia') brightness(0);
 }
-
-.blindness.deuteranomaly {
+.blindness.low-green {
     filter: url('svg-filters.svg#deuteranomaly') brightness(0);
 }
-
-.blindness.tritanopia {
+.blindness.no-blue {
     filter: url('svg-filters.svg#tritanopia') brightness(0);
 }
-
-.blindness.tritanomaly {
+.blindness.low-blue {
     filter: url('svg-filters.svg#tritanomaly') brightness(0);
 }
-
-.blindness.achromatopsia {
+.blindness.no-color {
     filter: url('svg-filters.svg#achromatopsia') brightness(0);
 }
-
-.blindness.achromatomaly {
+.blindness.almost-no-color {
     filter: url('svg-filters.svg#achromatomaly') brightness(0);
 }
 
 /* color blindness variations */
-.protanopia {
+.no-red {
     filter: url('svg-filters.svg#protanopia');
 }
-
-.protanomaly {
+.low-red {
     filter: url('svg-filters.svg#protanomaly');
 }
-
-.deuteranopia {
+.no-green {
     filter: url('svg-filters.svg#deuteranopia');
 }
-
-.deuteranomaly {
+.low-green {
     filter: url('svg-filters.svg#deuteranomaly');
 }
-
-.tritanopia {
+.no-blue {
     filter: url('svg-filters.svg#tritanopia');
 }
-
-.tritanomaly {
+.low-blue {
     filter: url('svg-filters.svg#tritanomaly');
 }
-
-.achromatopsia {
+.no-color {
     filter: url('svg-filters.svg#achromatopsia');
 }
-
-.achromatomaly {
+.almost-no-color {
     filter: url('svg-filters.svg#achromatomaly');
 }
 
@@ -423,16 +396,16 @@ iframe {
         display: none;
     }
 
-    .controls {
+    form {
         display: block;
     }
 
-    .controls > * {
+    form > * {
         float: left;
         margin-bottom: 0;
     }
 
-    .controls .url-navigator {
+    form .url-navigator {
         float: right;
         margin-right: 1rem;
     }
