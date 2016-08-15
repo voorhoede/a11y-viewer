@@ -15,3 +15,8 @@ Build: `npm run build`
 Start server: `npm start`
 
 Watch for file changes: `npm run watch`
+
+
+## License
+
+[MIT licensed](LICENSE) © [De Voorhoede](https://www.voorhoede.nl/)
