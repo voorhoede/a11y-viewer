@@ -60,17 +60,33 @@
 
     function restoreForm(state) {
 
-        formElements.forEach(function (element) {
-            var newValue = state[element.id];
+        for (var key in state) {
+            var element = formElements.filter(function (element) {
+                return element.id == key;
+            })[0];
+            var newValue = state[key];
 
-            if (element.type == "checkbox" && element.checked.toString() != newValue) {
+            if (!element) {
+                return false;
+            } else if (element.type == 'checkbox') {
                 element.checked = newValue == "true";
                 update(element, false);
-            } else if (element.value != newValue) {
+            } else if (element.type == 'select-one'){
+                var isValidOption = arrayFrom(element.options).some(function (option) {
+                   return option.value == newValue;
+                });
+
+                if (isValidOption) {
+                    element.value = newValue;
+                    update(element, false);
+                } else {
+                    return false;
+                }
+            } else {
                 element.value = newValue;
                 update(element, false);
             }
-        });
+        }
     }
 
     function update(formElement, isTriggeredByUser) {
