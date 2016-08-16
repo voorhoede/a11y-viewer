@@ -12,8 +12,8 @@
     "start": "http-server './dist/' -c-1 -o -p 1119",
     "watch": "npm-run-all --parallel watch:*",
     "watch:html": "chokidar 'src/**/*.html' 'src/**/*.svg' --command 'npm run build:html'",
-    "watch:css": "chokidar 'src/**/*.css' --command 'npm run build:css'",
-    "watch:js": "chokidar 'src/**/*.js' --command 'npm run build:js'"
+    "watch:css": "chokidar 'src/**/*.css' --command 'npm run build'",
+    "watch:js": "chokidar 'src/**/*.js' --command 'npm run build'"
   },
   "keywords": [
     "a11y",
