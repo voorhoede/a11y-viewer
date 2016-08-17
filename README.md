@@ -1,7 +1,6 @@
 # a11y Viewer
 
-**Emulate visual imparity, color blindness and inability to use a pointer.**
-
+**Simulate vision loss, color blindness or inability to use a pointer.**
 
 ## Demo
 

@@ -1,7 +1,7 @@
 {
   "name": "a11y-viewer",
   "version": "0.1.0",
-  "description": "Emulate visual imparity, color blindness and inability to use a pointer.",
+  "description": "Simulate vision loss, color blindness or inability to use a pointer.",
   "bin": {
     "a11y-viewer": "./bin/a11y-viewer"
   },

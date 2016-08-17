@@ -79,7 +79,7 @@
         switch (formElement) {
             case visionSelect:
                 value = formElement.value;
-                simulateVisualImpairment(value);
+                simulateVisionLoss(value);
                 break;
             case colorSelect:
                 value = formElement.value;
@@ -99,7 +99,7 @@
         }
     }
 
-    function simulateVisualImpairment(value) {
+    function simulateVisionLoss(value) {
 
         visionSelectOptions.forEach(function (option) {
             main.classList.remove(option.value);
