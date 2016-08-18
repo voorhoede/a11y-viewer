@@ -77,6 +77,10 @@ Start a11y-viewer and **open in browser**:
 a11y-viewer https://www.voorhoede.nl --port 3000 --open
 ```
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for [guidelines](CONTRIBUTING.md#guidelines) and [development scripts](CONTRIBUTING.md#scripts).
+
 ## License
 
 [MIT licensed](LICENSE) © [De Voorhoede](https://www.voorhoede.nl/)

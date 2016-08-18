@@ -63,47 +63,8 @@ select:focus {
     width: 1px;
 }
 
-/* header */
-.app-header {
-    display: none; /* hide when not enhanced */
-    padding: 0.25rem;
-    background-color: var(--color-grey);
-    border-bottom: 1px solid var(--color-grey-dark);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    line-height: 2.5;
-}
-
-.is-enhanced .app-header {
-    display: block;
-    flex: 0 1 auto;
-}
-
-.update-browser {
-    display: block;
-    flex: 0 1 auto;
-    padding: 1rem;
-    background: #EBC6B9;
-}
-
-.is-enhanced .update-browser {
-    display: none;
-}
-
-form {
-    display: none;
-    width: 100%;
-}
-
-.is-open form {
-    display: block;
-}
-
-form > * {
-    margin-bottom: 0.5rem;
-    margin-left: 1rem;
-}
-
 /* buttons */
+
 .button {
     display: inline-block;
     height: var(--control-height);
@@ -160,8 +121,53 @@ input[type="checkbox"]:checked ~ .label-text:before {
     background-repeat: no-repeat;
 }
 
+/* input[type="text"] */
+
+input[type="text"] {
+    border: 1px solid var(--color-grey-light);
+    padding: 0.5rem;
+}
+
+/* header */
+.app-header {
+    display: none; /* hide when not enhanced */
+    padding: 0.25rem;
+    background-color: var(--color-grey);
+    border-bottom: 1px solid var(--color-grey-dark);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    line-height: 2.5;
+}
+
+.is-enhanced .app-header {
+    display: block;
+    flex: 0 1 auto;
+}
+
+.update-browser {
+    display: block;
+    flex: 0 1 auto;
+    padding: 1rem;
+    background: #EBC6B9;
+}
+
+.is-enhanced .update-browser {
+    display: none;
+}
+
+form {
+    display: none;
+}
+
+.is-open form {
+    display: block;
+}
+
+.is-open form > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
 /* select */
-.module-selector-select {
+.select-input {
     height: var(--control-height); /* line-height has no effect on replaced elements */
     appearance: none;
     background-color: var(--color-grey-light);
@@ -170,23 +176,24 @@ input[type="checkbox"]:checked ~ .label-text:before {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
     padding-right: 2.5rem; /* make space for caret icon */
     padding-left: 1rem;
+    width: 100%;
 }
 
-.module-selector-select:hover {
+.select-input:hover {
     transition: all 0.2s ease-in;
     background-color: var(--color-grey-dark);
     cursor: pointer;
 }
 
-.module-selector-label {
-    display: inline-block;
+.select-label {
+    display: block;
     height: var(--control-height);
     position: relative; /* for absolute position of caret */
     background-color: #ccd5d7;
     cursor: pointer;
 }
 
-.module-selector-label .icon-expand-more {
+.select-label .select-icon {
     pointer-events: none;
     position: absolute;
     height: 2.25rem;
@@ -197,7 +204,7 @@ input[type="checkbox"]:checked ~ .label-text:before {
     line-height: 2.375rem;
 }
 
-.icon-expand-more:before {
+.select-icon:before {
     content: '';
     display: inline-block;
     height: 1.25rem;
@@ -210,7 +217,6 @@ input[type="checkbox"]:checked ~ .label-text:before {
 main {
     display: block; /* IE10 fix, otherwise no styles are applied */
     flex: 1 1 auto;
-    height: 100%;
     position: relative; /* for absolute position of main.is-disabled:before */
     overflow: hidden; /* prevent scrolling on .app-header */
 }
@@ -233,46 +239,62 @@ main.is-disabled:before {
 }
 
 iframe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: none;
+    /* somehow we also need to set width and height to 100% to stretch iframe to its container */
     width: 100%;
     height: 100%;
-    border: none;
+    border: 0;
 }
 
 /* a11y toggler */
-.app-header .a11y-toggler {
-    float: none;
+.toggle-controls {
     text-align: right;
     height: var(--control-height);
 }
 
-.a11y-toggler svg {
-    vertical-align: -.25rem;
+.is-open .toggle-controls {
+    margin-bottom: 0.5rem;
 }
 
-.a11y-toggler .button {
-    padding: 0 .25rem;
+.toggle-controls-icon {
+    vertical-align: middle;
 }
 
-.is-open .button.open-menu {
-    display: none
+.toggle-controls .button {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
 }
 
-.button.close-menu {
+.is-open .toggle-controls-button-open {
     display: none;
 }
 
-.is-open .button.close-menu {
+.toggle-controls-button-close {
+    display: none;
+}
+
+.is-open .toggle-controls-button-close {
     display: inline-block;
 }
 
-.url-navigator input {
-    padding: 0 .5rem;
+.url-navigator {
+    display: flex;
+}
+
+.url-navigator-input {
+    flex: 1 1 auto;
     height: var(--control-height);
 }
 
-/* click stealer */
-.click-stealer-toggler {
-    display: inline-block;
+.url-navigator-submit {
+    flex: 0 1 auto;
+    max-width: 4rem;
+    overflow: hidden;
 }
 
 /* filters */
@@ -390,23 +412,53 @@ iframe {
     filter: url('svg-filters.svg#achromatomaly');
 }
 
-@media screen and (min-width: 1055px) {
 
-    .a11y-toggler {
+@media screen and (min-width: 768px) {
+
+    .select-label {
+        float: left;
+        width: 50%;
+    }
+
+    .select-label:last-of-type {
+        padding-left: 0.5rem;
+    }
+}
+
+
+@media screen and (min-width: 1055px) {
+    .toggle-controls {
         display: none;
     }
 
-    form {
-        display: block;
+    form,
+    .is-open form {
+        display: flex;
     }
 
     form > * {
-        float: left;
+        flex: 0 1 auto;
+    }
+
+    form > * + * {
+        margin-left: 0.5rem;
+    }
+
+    .is-open form > *:not(:last-child) {
         margin-bottom: 0;
     }
 
-    form .url-navigator {
-        float: right;
-        margin-right: 1rem;
+    .select-label {
+        float: none;
+        width: auto;
+    }
+
+    .select-label:last-of-type {
+        padding-left: 0;
+    }
+
+    .url-navigator {
+        flex: 1 1 auto;
     }
 }
+
