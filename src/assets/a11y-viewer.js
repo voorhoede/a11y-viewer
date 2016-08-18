@@ -149,22 +149,28 @@
     }
 
     function updateHistory(key, value) {
-        var queryString = replaceQueryString(key, value);
+        var queryString = replaceOrAddToQueryString(key, value);
 
         window.history.pushState('', '', queryString);
     }
 
-    function replaceQueryString(key, value) {
+    function replaceOrAddToQueryString(key, value) {
         var queryString = window.location.search.split('?').pop();
+        var newPair = key + '=' + encodeURIComponent(value);
+        var pairs = queryString.split('&');
 
-        var pairs = queryString.split('&').map(function (pair) {
-            var parts = pair.split('=');
-            if (parts[0] === key) {
-                return parts[0] + '=' + encodeURIComponent(value);
-            } else {
-                return pair;
-            }
-        });
+        if (queryString.indexOf(key) >= 0) {
+            pairs = pairs.map(function (pair) {
+                var parts = pair.split('=');
+                if (parts[0] === key) {
+                    return newPair;
+                } else {
+                    return pair;
+                }
+            });
+        } else {
+            pairs.push(newPair);
+        }
 
         return '?' + pairs.join('&');
     }
