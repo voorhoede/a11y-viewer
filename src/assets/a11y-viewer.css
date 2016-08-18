@@ -222,8 +222,7 @@ main {
 }
 
 main.is-disabled {
-    pointer-events: none;
-    user-select: none;
+    user-select: none; /* prevent selecting text */
 }
 
 main.is-disabled:before {
@@ -236,6 +235,7 @@ main.is-disabled:before {
     bottom: 0;
     left: 0;
     z-index: 1;
+    cursor: not-allowed;
 }
 
 iframe {
