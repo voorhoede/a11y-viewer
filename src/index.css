@@ -12,6 +12,8 @@
     --color-blue-dark: #1b363b;
 }
 
+/* css reset */
+
 *, :after, :before {
     box-sizing: border-box;
 }
@@ -63,7 +65,7 @@ select:focus {
     width: 1px;
 }
 
-/* buttons */
+/* core styles */
 
 .button {
     display: inline-block;
@@ -84,7 +86,6 @@ select:focus {
     cursor: pointer;
 }
 
-/* checkbox */
 input[type="checkbox"] {
     border: 0;
     clip: rect(0 0 0 0);
@@ -121,11 +122,13 @@ input[type="checkbox"]:checked ~ .label-text:before {
     background-repeat: no-repeat;
 }
 
-/* input[type="text"] */
-
 input[type="text"] {
     border: 1px solid var(--color-grey-light);
     padding: 0.5rem;
+}
+
+img {
+    max-width: 100%;
 }
 
 /* header */
@@ -297,6 +300,16 @@ iframe {
     overflow: hidden;
 }
 
+.landing {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: scroll;
+    padding: 1rem;
+}
+
 /* filters */
 
 /* moderate visual impairment combinations */
@@ -304,28 +317,28 @@ iframe {
     filter: blur(var(--moderate-blur));
 }
 .moderate.no-red {
-    filter: url('svg-filters.svg#protanopia')  blur(var(--moderate-blur));
+    filter: url('assets/svg-filters.svg#protanopia')  blur(var(--moderate-blur));
 }
 .moderate.low-red {
-    filter: url('svg-filters.svg#protanomaly') blur(var(--moderate-blur));
+    filter: url('assets/svg-filters.svg#protanomaly') blur(var(--moderate-blur));
 }
 .moderate.no-green {
-    filter: url('svg-filters.svg#deuteranopia') blur(var(--moderate-blur));
+    filter: url('assets/svg-filters.svg#deuteranopia') blur(var(--moderate-blur));
 }
 .moderate.low-green {
-    filter: url('svg-filters.svg#deuteranomaly') blur(var(--moderate-blur));
+    filter: url('assets/svg-filters.svg#deuteranomaly') blur(var(--moderate-blur));
 }
 .moderate.no-blue {
-    filter: url('svg-filters.svg#tritanopia') blur(var(--moderate-blur));
+    filter: url('assets/svg-filters.svg#tritanopia') blur(var(--moderate-blur));
 }
 .moderate.low-blue {
-    filter: url('svg-filters.svg#tritanomaly') blur(var(--moderate-blur));
+    filter: url('assets/svg-filters.svg#tritanomaly') blur(var(--moderate-blur));
 }
 .moderate.no-color {
-    filter: url('svg-filters.svg#achromatopsia') blur(var(--moderate-blur));
+    filter: url('assets/svg-filters.svg#achromatopsia') blur(var(--moderate-blur));
 }
 .moderate.almost-no-color {
-    filter: url('svg-filters.svg#achromatomaly') blur(var(--moderate-blur));
+    filter: url('assets/svg-filters.svg#achromatomaly') blur(var(--moderate-blur));
 }
 
 /* severe visual impairment combinations */
@@ -333,28 +346,28 @@ iframe {
    filter: blur(var(--severe-blur));
 }
 .severe.no-red {
-    filter: url('svg-filters.svg#protanopia') blur(var(--severe-blur));
+    filter: url('assets/svg-filters.svg#protanopia') blur(var(--severe-blur));
 }
 .severe.low-red {
-    filter: url('svg-filters.svg#protanomaly') blur(var(--severe-blur));
+    filter: url('assets/svg-filters.svg#protanomaly') blur(var(--severe-blur));
 }
 .severe.no-green {
-    filter: url('svg-filters.svg#deuteranopia') blur(var(--severe-blur));
+    filter: url('assets/svg-filters.svg#deuteranopia') blur(var(--severe-blur));
 }
 .severe.low-green {
-    filter: url('svg-filters.svg#deuteranomaly') blur(var(--severe-blur));
+    filter: url('assets/svg-filters.svg#deuteranomaly') blur(var(--severe-blur));
 }
 .severe.no-blue {
-    filter: url('svg-filters.svg#tritanopia') blur(var(--severe-blur));
+    filter: url('assets/svg-filters.svg#tritanopia') blur(var(--severe-blur));
 }
 .severe.low-blue {
-    filter: url('svg-filters.svg#tritanomaly') blur(var(--severe-blur));
+    filter: url('assets/svg-filters.svg#tritanomaly') blur(var(--severe-blur));
 }
 .severe.no-color {
-    filter: url('svg-filters.svg#achromatopsia') blur(var(--severe-blur));
+    filter: url('assets/svg-filters.svg#achromatopsia') blur(var(--severe-blur));
 }
 .severe.almost-no-color {
-    filter: url('svg-filters.svg#achromatomaly') blur(var(--severe-blur));
+    filter: url('assets/svg-filters.svg#achromatomaly') blur(var(--severe-blur));
 }
 
 /* blindness combinations */
@@ -362,54 +375,54 @@ iframe {
     filter: brightness(0);
 }
 .blindness.no-red {
-    filter: url('svg-filters.svg#protanopia') brightness(0);
+    filter: url('assets/svg-filters.svg#protanopia') brightness(0);
 }
 .blindness.low-red {
-    filter: url('svg-filters.svg#protanomaly') brightness(0);
+    filter: url('assets/svg-filters.svg#protanomaly') brightness(0);
 }
 .blindness.no-green {
-    filter: url('svg-filters.svg#deuteranopia') brightness(0);
+    filter: url('assets/svg-filters.svg#deuteranopia') brightness(0);
 }
 .blindness.low-green {
-    filter: url('svg-filters.svg#deuteranomaly') brightness(0);
+    filter: url('assets/svg-filters.svg#deuteranomaly') brightness(0);
 }
 .blindness.no-blue {
-    filter: url('svg-filters.svg#tritanopia') brightness(0);
+    filter: url('assets/svg-filters.svg#tritanopia') brightness(0);
 }
 .blindness.low-blue {
-    filter: url('svg-filters.svg#tritanomaly') brightness(0);
+    filter: url('assets/svg-filters.svg#tritanomaly') brightness(0);
 }
 .blindness.no-color {
-    filter: url('svg-filters.svg#achromatopsia') brightness(0);
+    filter: url('assets/svg-filters.svg#achromatopsia') brightness(0);
 }
 .blindness.almost-no-color {
-    filter: url('svg-filters.svg#achromatomaly') brightness(0);
+    filter: url('assets/svg-filters.svg#achromatomaly') brightness(0);
 }
 
 /* color blindness variations */
 .no-red {
-    filter: url('svg-filters.svg#protanopia');
+    filter: url('assets/svg-filters.svg#protanopia');
 }
 .low-red {
-    filter: url('svg-filters.svg#protanomaly');
+    filter: url('assets/svg-filters.svg#protanomaly');
 }
 .no-green {
-    filter: url('svg-filters.svg#deuteranopia');
+    filter: url('assets/svg-filters.svg#deuteranopia');
 }
 .low-green {
-    filter: url('svg-filters.svg#deuteranomaly');
+    filter: url('assets/svg-filters.svg#deuteranomaly');
 }
 .no-blue {
-    filter: url('svg-filters.svg#tritanopia');
+    filter: url('assets/svg-filters.svg#tritanopia');
 }
 .low-blue {
-    filter: url('svg-filters.svg#tritanomaly');
+    filter: url('assets/svg-filters.svg#tritanomaly');
 }
 .no-color {
-    filter: url('svg-filters.svg#achromatopsia');
+    filter: url('assets/svg-filters.svg#achromatopsia');
 }
 .almost-no-color {
-    filter: url('svg-filters.svg#achromatomaly');
+    filter: url('assets/svg-filters.svg#achromatomaly');
 }
 
 
@@ -461,4 +474,9 @@ iframe {
         flex: 1 1 auto;
     }
 }
+
+iframe {
+    display: none !important;
+}
+
 
