@@ -1,7 +1,7 @@
 const fs = require('fs');
 const postcss = require('postcss');
 
-const inputFilename = 'src/assets/a11y-viewer.css';
+const inputFilename = 'src/index.css';
 const outputDir = 'dist/';
 const outputFilename = 'dist/index.html';
 const indexFile = fs.readFileSync(outputFilename);

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const uglify = require('uglify-js');
 
-const inputFilename = 'src/assets/a11y-viewer.js';
+const inputFilename = './src/index.js';
 const outputFilename = 'dist/index.html';
 const indexFile = fs.readFileSync(outputFilename);
 const placeholder = '/* INLINE_JAVASCRIPT_PLACEHOLDER */';
