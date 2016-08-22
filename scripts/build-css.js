@@ -3,8 +3,10 @@ const postcss = require('postcss');
 
 const inputFilename = 'src/assets/a11y-viewer.css';
 const outputDir = 'dist/';
-const outputFilename = 'dist/index.html';
-const indexFile = fs.readFileSync(outputFilename);
+const outputIndexFile = 'dist/index.html';
+const outputIntroFile = 'dist/intro.html';
+const indexFile = fs.readFileSync(outputIndexFile);
+const introFile = fs.readFileSync(outputIntroFile);
 const placeholder = '/* INLINE_CSS_PLACEHOLDER */';
 
 postcss([
@@ -16,5 +18,6 @@ postcss([
         to: outputDir, // file path relative to output dir
     })
     .then(function (result) {
-        fs.writeFileSync(outputFilename, indexFile.toString().replace(placeholder, result.css));
+        fs.writeFileSync(outputIndexFile, indexFile.toString().replace(placeholder, result.css));
+        fs.writeFileSync(outputIntroFile, introFile.toString().replace(placeholder, result.css));
     });
