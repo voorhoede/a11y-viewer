@@ -15,7 +15,7 @@ postcss([
     require('cssnano')])
     .process(fs.readFileSync(inputFilename), {
         from: inputFilename,
-        to: outputDir, // file path relative to output dir
+        to: outputDir // file path relative to output dir
     })
     .then(function (result) {
         fs.writeFileSync(outputIndexFile, indexFile.toString().replace(placeholder, result.css));
