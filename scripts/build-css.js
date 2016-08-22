@@ -10,7 +10,7 @@ const introFile = fs.readFileSync(outputIntroFile);
 const placeholder = '/* INLINE_CSS_PLACEHOLDER */';
 
 postcss([
-    require("postcss-custom-properties"),
+    require('postcss-custom-properties'),
     require('autoprefixer'),
     require('cssnano')])
     .process(fs.readFileSync(inputFilename), {
