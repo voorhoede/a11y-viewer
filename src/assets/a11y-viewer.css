@@ -299,7 +299,7 @@ iframe {
 
 /* filters */
 
-/* moderate visual impairment combinations */
+/* moderate vision loss combinations */
 .moderate {
     filter: blur(var(--moderate-blur));
 }
@@ -328,7 +328,7 @@ iframe {
     filter: url('svg-filters.svg#achromatomaly') blur(var(--moderate-blur));
 }
 
-/* severe visual impairment combinations */
+/* severe vision loss combinations */
 .severe {
    filter: blur(var(--severe-blur));
 }

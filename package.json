@@ -1,8 +1,10 @@
 {
   "name": "a11y-viewer",
-  "version": "0.0.1",
-  "description": "Emulate several forms of visual imparity for developing better accessible websites",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Simulate vision loss, color blindness or inability to use a pointer.",
+  "bin": {
+    "a11y-viewer": "./bin/a11y-viewer"
+  },
   "scripts": {
     "prebuild": "rimraf dist/ && mkdirp dist/",
     "build": "npm-run-all build:html build:css build:js",
@@ -17,7 +19,11 @@
   },
   "keywords": [
     "a11y",
-    "accessibility"
+    "accessibility",
+    "blindness",
+    "emulator",
+    "simulator",
+    "viewer"
   ],
   "repository": {
     "type": "git",
@@ -33,6 +39,11 @@
     "url": "https://github.com/voorhoede/a11y-viewer/issues"
   },
   "homepage": "https://github.com/voorhoede/a11y-viewer#readme",
+  "dependencies": {
+    "commander": "2.9.0",
+    "ecstatic": "2.1.0",
+    "opener": "1.4.1"
+  },
   "devDependencies": {
     "autoprefixer": "6.3.7",
     "chokidar-cli": "1.2.0",
