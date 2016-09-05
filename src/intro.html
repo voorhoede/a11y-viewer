@@ -14,32 +14,139 @@
 <body class="intro">
 <header>
     <h1>The A11y Viewer</h1>
+    <h2>Simulate Vision Loss, Color Blindness or Inability To Use a Pointer</h2>
 </header>
 <main>
     <article>
-        <section>
+        <section class="introduction">
             <p>Use this A11y Viewer during the development of your project to check for some of the most basic accessibility issues. With the A11y Viewer you can emulate blindness, color-blindness and even disable clicks and so you can only use keys to navigate.</p>
         </section>
         <section>
             <h2>Motivation</h2>
-            <p>We wanted to simulate blindness, color blindness and disability to use mouse.</p>
+            <p>While following the <a href="https://www.udacity.com/course/web-accessibility--ud891" target="_blank" rel="noopener noreferrer">Web Accessibility Course</a> on Udacity we noticed they were using a custom simulator that emulates different kinds of visual impairments. This sparked our curiousity and the idea to build our own version.</p>
+            <p>We wanted to create something to simulate blindness, color blindness and the inability to use mouse all-in-one. And that's exactly what the A11y Viewer does!</p>
+            <p>It can force you to use a screen-reader or other input device in combination with your keyboard to navigate your project by disabling any mouse input. And it let's you check any design choices made using overlay-filters to view your project with a variety of visual disabilities and impairments. You can choose a specific type of color vision deficiency or complete blindness.</p>
+        </section>
+        <section>
+            <h2>Vision loss</h2>
+            <blockquote cite="http://www.who.int/mediacentre/factsheets/fs282/en/">
+                <p>"Worldwide 285 million people are estimated to be visually impaired."</p>
+                <footer>&#8211; <a href="http://www.who.int/mediacentre/factsheets/fs282/en/" target="_blank" rel="noopener noreferrer">World Health Organization</a> &#8211;</footer>
+            </blockquote>
+            <p>Visual impairment, or simply <i>vision loss</i>, is a decreased ability to see. Common types of vision
+                loss are <i>near-sightedness</i> or<i>far-sightedness</i>. The most severe form is complete vision loss,
+                or simply <i>blindness</i>.
+            </p>
+            <p>Many types of vision loss can be prevented or cured with treatment. Vision loss <strong>cannot</strong> be fixed with glasses or contact lenses.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type of vision loss</th>
+                        <th>Number of people</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Low vision</td>
+                        <td>246 million</td>
+                        <td>86%</td>
+                    </tr>
+                    <tr>
+                        <td>Blindness</td>
+                        <td>39 million</td>
+                        <td>14%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Pointers and touch</h3>
+            <p>People with severe or complete vision loss navigate web pages using a keyboard or braille keyboard. They may not be able to use a pointer device (e.g. mouse) or interact with mobile devices using touch gestures. This means they interact with a web page differently than most people with normal vision.</p>
+            <figure>
+                <img src="/assets/img/worldmap.png" alt="285 million people: nearly the size of the population of the United States">
+                <figcaption>- <strong>285 million</strong> people worldwide, or nearly the size of the population of the United States, suffer from vision loss</figcaption>
+            </figure>
+        </section>
+        <section>
+            <h2>Color blindness</h2>
+            <p>Color blindness ranges from almost normal color vision to not being able to distinguish colors at all. The term <i>color blindness</i> is misleading: practically all color blind people are not completely color blind, but are <i>color deficient</i>. Color deficient people are unable to distinguish certain colors.</p>
+            <blockquote cite="http://www.who.int/mediacentre/factsheets/fs282/en/">
+                <p>"Roughly <strong>8% men</strong> and <strong>0.5% women</strong> with Northern European ancestry are
+                    color blind."</p>
+                <footer>&#8211; <a href="http://www.color-blindness.com/2006/04/28/colorblind-population/" rel="noopener noreferrer">Color-blindness.com</a> &#8211;</footer>
+            </blockquote>
+            <p>The most common form of color deficiency is red-green blindness. Red-green blindness is a combination of red blindness (protan effects) and green blindness (deutan effects).</p>
+            <p>Red-green blindness is encoded on the X sex chromosome. This means color blindness is prevalent among
+                males, and not females.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type of color blindness</th>
+                        <th>Male</th>
+                        <th>Female</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Low green</td>
+                        <td>4.63%</td>
+                        <td>0.36%</td>
+                        <td>4.99%</td>
+                    </tr>
+                    <tr>
+                        <td>No green</td>
+                        <td>1.27%</td>
+                        <td>0.01%</td>
+                        <td>1.28%</td>
+                    </tr>
+                    <tr>
+                        <td>Low red</td>
+                        <td>1.08%</td>
+                        <td>0.03%</td>
+                        <td>1.11%</td>
+                    </tr>
+                    <tr>
+                        <td>No red</td>
+                        <td>1.01%</td>
+                        <td>0.02%</td>
+                        <td>1.03%</td>
+                    </tr>
+                    <tr>
+                        <td>Blue/yellow</td>
+                        <td><0.01%</td>
+                        <td><0.01%</td>
+                        <td><0.01%</td>
+                    </tr>
+                    <tr>
+                        <td>Low/no color</td>
+                        <td>&lt;0.001%</td>
+                        <td>&lt;0.001%</td>
+                        <td>&lt;0.001%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <figure>
+                <img src="/assets/img/persons.png"
+                     alt="">
+                <figcaption>- 1 out of 12 people has some form of color blindness</figcaption>
+            </figure>
         </section>
         <section>
             <h2>Examples</h2>
             <p>Below are some examples of (not so) accessible websites. These are just a few examples that we could find. The good ones make good use of contrast and are easy to navigate with the TAB-key. The other ones, not so much.</p>
-            <p>Any additions to these lists are welcome.</p>
-            <h3>Good:</h3>
+            <h3>Good</h3>
             <ul>
-                <li><a href="http://www.nomensa.com/">Nomensa</a> - Good contrast</li>
-                <li><a href="http://24ways.org/">24 Ways</a> - Good navigation</li>
-                <li><a href="http://www.csszengarden.com/">CSS Zen Garden</a> - Good contrast</li>
+                <li><a href="http://www.nomensa.com/" target="_blank" rel="noopener noreferrer">Nomensa</a> - Good contrast</li>
+                <li><a href="http://24ways.org/" target="_blank" rel="noopener noreferrer">24 Ways</a> - Good navigation</li>
+                <li><a href="http://www.csszengarden.com/" target="_blank" rel="noopener noreferrer">CSS Zen Garden</a> - Good contrast</li>
             </ul>
-            <h3>Bad:</h3>
+            <h3>Bad</h3>
             <ul>
-                <li><a href="https://airtable.com/">Airtable</a> - Low contrast</li>
-                <li><a href="http://www.brit.co/">Brit + Co</a> - Bad navigation</li>
-                <li><a href="http://www.sears.com/">Sears</a> - Bad navigation</li>
+                <li><a href="https://airtable.com/" target="_blank" rel="noopener noreferrer">Airtable</a> - Low contrast</li>
+                <li><a href="http://www.brit.co/" target="_blank" rel="noopener noreferrer">Brit + Co</a> - Bad navigation</li>
+                <li><a href="http://www.sears.com/" target="_blank" rel="noopener noreferrer">Sears</a> - Bad navigation</li>
             </ul>
+            <p><em>Any additions to this list are welcome.</em></p>
         </section>
         <section>
             <h2>Limitations</h2>
@@ -52,17 +159,34 @@
         </section>
         <section>
             <h2>Other resources</h2>
+            <h3>Articles</h3>
             <ul>
-                <li><a href="https://css-tricks.com/accessibility-basics-testing-your-page-for-color-blindness/" target="_blank">Accessibility basics: Testing Your Page For Color Blindness</a></li>
-                <li><a href="http://contrastrebellion.com/" target="_blank">Contrast Rebellion</a></li>
-                <li><a href="http://webaim.org/resources/contrastchecker/" target="_blank">Color Contrast Checker</a></li>
-                <li><a href="https://www.udacity.com/course/web-accessibility--ud891" target="_blank">Udacity Web Accessibility Course</a></li>
+                <li><a href="https://css-tricks.com/accessibility-basics-testing-your-page-for-color-blindness/" target="_blank" rel="noopener noreferrer">Accessibility basics: Testing Your Page For Color Blindness</a></li>
+                <li><a href="http://contrastrebellion.com/" target="_blank" rel="noopener noreferrer">Contrast Rebellion</a></li>
+                <li><a href="http://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener noreferrer">Color Contrast Checker</a></li>
+                <li><a href="https://www.udacity.com/course/web-accessibility--ud891" target="_blank" rel="noopener noreferrer">Udacity Web Accessibility Course</a></li>
+                <li><a href="https://www.w3.org/TR/WCAG20/" target="_blank" rel="noopener noreferrer">Web Content Accessibility Guidelines (WCAG) 2.0</a></li>
             </ul>
+            <h3>Tools</h3>
+            <ul>
+                <li><a href="https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=nl" target="_blank" rel="noopener noreferrer">Accessibility Developer Tools</a></li>
+            </ul>
+            <h3>Initiatives</h3>
+            <ul>
+                <li><a href="http://www.apple.com/accessibility/" target="_blank" rel="noopener noreferrer">Apple and Accessibility</a></li>
+                <li><a href="https://www.google.com/accessibility/" target="_blank" rel="noopener noreferrer">Google and Accessibility</a></li>
+                <li><a href="https://www.microsoft.com/en-us/accessibility/home">Microsoft and Accessibility</a></li>
+            </ul>
+            <p><em>Any additions to this list are welcome.</em></p>
+        </section>
+        <section>
+            <h2>About the Accessibility Viewer</h2>
+            <p>The Accessibility Viewer is built by <a href="https://www.voorhoede.nl/en/" target="_blank" rel="noopener noreferrer">De Voorhoede</a>. De Voorhoede is a front-end development agency in the Netherlands.</p>
         </section>
     </article>
 </main>
 <footer>
-    <p>&copy; 2016 <a href="https://www.voorhoede.nl/" target="_blank">De Voorhoede</a> &#8212; <a href="https://github.com/voorhoede/a11y-viewer/blob/master/LICENSE" target="_blank">MIT licensed</a>.</p>
+    <p>&copy; 2016 De Voorhoede &#8212; <a href="https://github.com/voorhoede/a11y-viewer/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">MIT licensed</a>.</p>
 </footer>
 </body>
 </html>
