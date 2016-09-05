@@ -1,7 +1,7 @@
 const fs = require('fs');
 const postcss = require('postcss');
 
-const inputFilename = 'src/assets/a11y-viewer.css';
+const inputFilename = 'src/assets/index.css';
 const outputDir = 'dist/';
 const outputIndexFile = 'dist/index.html';
 const outputIntroFile = 'dist/intro.html';

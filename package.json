@@ -5,15 +5,17 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "rimraf dist/ && mkdirp dist/",
-    "build": "npm-run-all build:html build:css build:js",
-    "build:html": "ncp ./src/index.html ./dist/index.html && ncp ./src/intro.html ./dist/intro.html && ncp ./src/assets/svg-filters.svg ./dist/svg-filters.svg",
+    "build": "npm-run-all build:html build:css build:js build:assets",
+    "build:html": "ncp ./src/index.html ./dist/index.html && ncp ./src/intro.html ./dist/intro.html",
     "build:css": "node scripts/build-css.js",
     "build:js": "node scripts/build-js.js",
+    "build:assets": "ncp ./src/assets/ ./dist/assets/",
     "start": "http-server './dist/' -c-1 -o -p 1119",
     "watch": "npm-run-all --parallel watch:*",
-    "watch:html": "chokidar 'src/**/*.html' 'src/**/*.svg' --command 'npm run build:html'",
-    "watch:css": "chokidar 'src/**/*.css' --command 'npm run build'",
-    "watch:js": "chokidar 'src/**/*.js' --command 'npm run build'"
+    "watch:html": "chokidar 'src/**/*.html' --command 'npm run build'",
+    "watch:css": "chokidar 'src/assets/*.css' --command 'npm run build'",
+    "watch:js": "chokidar 'src/assets/*.js' --command 'npm run build'",
+    "watch:assets": "chokidar 'src/assets/**.*' --command 'npm run build:assets'"
   },
   "keywords": [
     "a11y",
