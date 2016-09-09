@@ -1,191 +1,136 @@
 (function() {
+    var FORM = document.querySelector('form');
+    var MAIN = document.querySelector('main');
+    var IFRAME = document.querySelector('iframe');
 
-    var VISION_SELECTOR = '[data-input-vision]';
-    var COLOR_SELECTOR = '[data-input-color]';
-    var KEYBOARD_ONLY_SELECTOR = '[data-input-keyboard-only]';
-    var URL_SELECTOR = '[data-input-url]';
     var DISABLED_CLASS = 'is-disabled';
+    var OPEN_CLASS = 'is-open';
 
-    var visionSelect = document.querySelector(VISION_SELECTOR);
-    var visionSelectOptions = arrayFrom(visionSelect.options);
-    var colorSelect = document.querySelector(COLOR_SELECTOR);
-    var colorSelectOptions = arrayFrom(colorSelect.options);
-    var keyboardOnlyInput = document.querySelector(KEYBOARD_ONLY_SELECTOR);
-    var urlInput = document.querySelector(URL_SELECTOR);
-    var formElements = [ visionSelect, colorSelect, keyboardOnlyInput, urlInput ];
-    var supportsPushState = ('pushState' in window.history);
+    function init() {
+        populateForm();
+        initCollapsible();
+        bindEvents();
+    }
 
-    var form = document.querySelector('form');
-    var main = document.querySelector('main');
-    var iframe = document.querySelector('iframe');
-    var collapsibleHandlers = arrayFrom(document.querySelectorAll('[data-collapsible-handle]'));
-    var collapsibleTarget = document.querySelector('[data-collapsible-target]');
-
-    onPageLoad();
-
-    form.addEventListener('change', function handleChange(event) {
-        update(event.target, true);
-    }, false);
-
-    form.addEventListener('submit', function handleSubmit(event) {
-        event.preventDefault();
-        // the `change` event is fired as well when user submits form,
-        // so we don't need to do anything else here
-    }, false);
-
-    window.onpopstate = function () {
-        var state = queryStringToObject(window.location.search);
-        restoreForm(state);
-    };
-
-    collapsibleHandlers.forEach(function (collapsible) {
-        collapsible.addEventListener('click', toggleMenu, false);
-    });
-
-    function onPageLoad() {
+    // Set the form values when the URL contains parameters
+    function populateForm() {
         var queryString = window.location.search;
-
         if (queryString) {
-            var state = queryStringToObject(window.location.search);
-            restoreForm(state);
-        } else {
-            // store initial state in url
-            window.history.replaceState('', '', formToQueryString());
-        }
-    }
+            var state = queryStringToObject(queryString);
+            for (var key in state) {
+                var input = FORM[key];
+                var value = state[key];
 
-    function toggleMenu() {
-        collapsibleTarget.classList.toggle('is-open');
-    }
+                if (input) {
+                    if (input.type.toLowerCase() == 'checkbox') {
+                        input.checked = value;
+                    } else {
+                        // If no value is set take the first option from a select
+                        if (!value) {
+                            value = input.options ? input.options[0].value : '';
+                        }
+                        input.value = value;
+                    }
 
-    function restoreForm(state) {
-
-        for (var key in state) {
-            var element = formElements.filter(function (element) {
-                return element.id == key;
-            })[0];
-            var newValue = state[key];
-
-            if (!element) {
-                return false;
-            } else if (element.type == 'checkbox') {
-                element.checked = newValue == "true";
-                update(element, false);
-            } else if (element.type == 'select-one'){
-                var isValidOption = arrayFrom(element.options).some(function (option) {
-                   return option.value == newValue;
-                });
-
-                if (isValidOption) {
-                    element.value = newValue;
-                    update(element, false);
-                } else {
-                    return false;
+                    // Apply changes to the view
+                    updateView(input);
                 }
-            } else {
-                element.value = newValue;
-                update(element, false);
             }
         }
     }
 
-    function update(formElement, isTriggeredByUser) {
-        var value;
-
-        switch (formElement) {
-            case visionSelect:
-                value = formElement.value;
-                simulateVisualImpairment(value);
-                break;
-            case colorSelect:
-                value = formElement.value;
-                simulateColorBlindness(value);
-                break;
-            case keyboardOnlyInput:
-                value = formElement.checked;
-                toggleClickStealer(value);
-                break;
-            case urlInput:
-                value = formElement.value;
-                updateTestSite(value);
-        }
-
-        if (supportsPushState && isTriggeredByUser) {
-            updateHistory(formElement.id, value);
-        }
-    }
-
-    function simulateVisualImpairment(value) {
-
-        visionSelectOptions.forEach(function (option) {
-            main.classList.remove(option.value);
+    function initCollapsible() {
+        var collapsibleHandlers = arrayFrom(document.querySelectorAll('[data-collapsible-handle]'));
+        var collapsibleTarget = document.querySelector('[data-collapsible-target]');
+        
+        collapsibleHandlers.forEach(function (collapsible) {
+            collapsible.addEventListener('click', function() {
+                collapsibleTarget.classList.toggle(OPEN_CLASS);
+            }, false);
         });
-
-        main.classList.add(value);
     }
 
-    function simulateColorBlindness(value) {
+    function bindEvents() {
+        FORM.addEventListener('change', function(event) {
+            updateView(event.target)
+        }, false);
 
-        colorSelectOptions.forEach(function (option) {
-            main.classList.remove(option.value);
+        // the `change` event is fired as well when user submits form,
+        // so we don't need to do anything here
+        FORM.addEventListener('submit', function(event) {
+            event.preventDefault();
+        }, false);
+
+        // When the back/forward button is used update the form
+        window.addEventListener('popstate', function() {
+            populateForm();
         });
-
-        main.classList.add(value);
     }
 
-    function toggleClickStealer(isActive) {
-        main.classList.toggle(DISABLED_CLASS, isActive);
+    // Update the URL and the view
+    function updateView(formElement) {
+        var actions = {
+            'vision': simulateOption,
+            'color': simulateOption,
+            'keyboard-only': toggleClickStealer,
+            'url': updateTestSite
+        };
+
+        actions[formElement.name](formElement);
+        updateUrl();
     }
 
-    function updateTestSite(value) {
-        var parsedUrl = parseTestSiteUrl(value);
-        // replace the iframe element with a new one to prevent a new entry in browser history
-        var parent = iframe.parentNode;
+    // Update the address bar with input/values excluding the submit button
+    function updateUrl() {
+        // Only update the URL when the history API is supported
+        if ('pushState' in window.history) {
+            // Exclude the submit button
+            var inputs = arrayFrom(FORM.elements).filter(function (element) {
+                return (element.nodeName.toLowerCase() !== 'button');
+            });
+
+            // Update address bar
+            window.history.pushState('', document.title, inputsToQueryString(inputs));
+        }
+    }
+
+    // Remove all simulation classes and add the selected option
+    function simulateOption(formElement) {
+        var optionClass = formElement.value;
+        var options = formElement.options;
+        for (var i = 0, len = options.length; i < len; i++) {
+            MAIN.classList.remove(options[i].value);
+        }
+		// Falls back to the first option when no option class is set
+        MAIN.classList.add(optionClass ? optionClass : formElement.options[0].value);
+    }
+
+    // Toggle the disabled class
+    function toggleClickStealer(formElement) {
+        MAIN.classList.toggle(DISABLED_CLASS, formElement.checked);
+    }
+
+    // Replace the iframe element with a new one to prevent a new entry in browser history
+    function updateTestSite(formElement) {
+        var parsedUrl = parseTestSiteUrl(formElement.value);
         var newIframe = document.createElement('iframe');
 
         newIframe.src = parsedUrl;
-        parent.replaceChild(newIframe, iframe);
-        iframe = newIframe;
+        IFRAME.parentNode.replaceChild(newIframe, IFRAME);
+        IFRAME = newIframe;
     }
 
-    function updateHistory(key, value) {
-        var queryString = replaceOrAddToQueryString(key, value);
-
-        window.history.pushState('', '', queryString);
-    }
-
-    function replaceOrAddToQueryString(key, value) {
-        var queryString = window.location.search.split('?').pop();
-        var newPair = key + '=' + encodeURIComponent(value);
-        var pairs = queryString.split('&');
-
-        if (queryString.indexOf(key) >= 0) {
-            pairs = pairs.map(function (pair) {
-                var parts = pair.split('=');
-                if (parts[0] === key) {
-                    return newPair;
-                } else {
-                    return pair;
-                }
-            });
-        } else {
-            pairs.push(newPair);
+    // Return relative protocol when no protocol is specified
+    function parseTestSiteUrl(url) {
+        if (!/^https?\:\/\//i.test(url)) {
+            url = '//' + url;
         }
-
-        return '?' + pairs.join('&');
-    }
-
-    function formToQueryString() {
-        return '?' +
-            visionSelect.id + '=' + visionSelect.value + '&' +
-            colorSelect.id + '=' + colorSelect.value + '&' +
-            keyboardOnlyInput.id + '=' + keyboardOnlyInput.checked + '&' +
-            urlInput.id + '=' + encodeURIComponent(urlInput.value);
+        return url;
     }
 
     /**
-     * Returns query string parameters as key:value pairs.
-     * Example: ?amount=1000&status=none -> { amount: "1000", status: "none" }
+     * Returns query string parameters as key / value pairs
+     *
      * @param {string} query
      * @returns {object}
      */
@@ -200,22 +145,42 @@
             }, {});
     }
 
-    function parseTestSiteUrl(url) {
-
-        if (!/^https?\:\/\//.test(url)) {
-            url = "//" + url;
+    /**
+     * Create a query string from an array of inputs with their values
+     * and check for input type checkbox elements and their checked state
+     *
+     * @param {Array} inputs array of input elements
+     * @returns {string} query string
+     */
+    function inputsToQueryString(inputs) {
+        var queryString = [];
+        for (var i = 0, len = inputs.length; i < len; i++) {
+            var input = inputs[i];
+            var inputValue = input.value;
+            if (input.type.toLowerCase() === 'checkbox' && !input.checked) {
+                inputValue = '';
+            }
+            queryString.push(input.name + '=' + encodeURIComponent(inputValue));
         }
 
-        return url;
+        return '?' + queryString.join('&');
     }
 
+    /**
+     * Create an iterable array from an array like object
+     *
+     * @param arrayLikeObject
+     * @returns {Array} given array like object as array
+     */
     function arrayFrom(arrayLikeObject) {
         var array = [];
-
         for (var i = 0; i < arrayLikeObject.length; i++) {
             array.push(arrayLikeObject[i]);
         }
         return array;
     }
+
+    // Kick off application
+    init();
 
 }());
