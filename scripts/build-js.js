@@ -17,7 +17,8 @@ var result = uglify.minify(inputFilename, {
         unused: true,
         if_return: true,
         join_vars: true,
-        drop_console: true
+        drop_console: true,
+        drop_debugger: true
     }
 });
 
