@@ -71,9 +71,7 @@
 
         <label class="select-label" for="color">
             <span class="a11y-sr-only">Select level of color blindness</span>
-            <select class="select-input" id="color" name="color"
-                    tabindex="-1"
-                    data-input-color>
+            <select class="select-input" id="color" name="color" tabindex="-1">
                 <optgroup label="Color blindness">
                     <option value="normal">No color blindness</option>
                     <option value="no-red">No red (Protanopia)</option>
@@ -100,11 +98,7 @@
 
         <span class="url-navigator">
             <label class="a11y-sr-only" for="url">What page (URL) do you want to view?</label>
-            <input class="url-navigator-input" type="text" id="url" name="url"
-                   placeholder="Enter url"
-                   value="www.voorhoede.nl"
-                   tabindex="-1"
-                   data-input-url>
+            <input class="url-navigator-input" type="text" id="url" name="url" placeholder="Enter url..." value="www.voorhoede.nl" tabindex="-1">
             <button class="button url-navigator-submit" type="submit" tabindex="-1">GO</button>
         </span>
 
@@ -120,7 +114,7 @@
     <iframe src="https://voorhoede.nl"></iframe>
 </main>
 
-<script>!function(){function e(){var e=window.location.search;if(e){var t=d(window.location.search);n(t)}else window.history.replaceState("","",s())}function t(){x.classList.toggle("is-open")}function n(e){E.forEach(function(t){var n=e[t.id];"checkbox"==t.type&&t.checked.toString()!=n?(t.checked="true"==n,o(t,!1)):t.value!=n&&(t.value=n,o(t,!1))})}function o(e,t){var n;switch(e){case S:n=e.value,c(n);break;case b:n=e.value,a(n);break;case q:n=e.checked,i(n);break;case L:n=e.value,r(n)}C&&t&&u(e.id,n)}function c(e){k.forEach(function(e){R.classList.remove(e.value)}),R.classList.add(e)}function a(e){g.forEach(function(e){R.classList.remove(e.value)}),R.classList.add(e)}function i(e){R.classList.toggle(y,e)}function r(e){var t=f(e),n=U.parentNode,o=document.createElement("iframe");o.src=t,n.replaceChild(o,U),U=o}function u(e,t){var n=l(e,t);window.history.pushState("","",n)}function l(e,t){var n=window.location.search.split("?").pop(),o=n.split("&").map(function(n){var o=n.split("=");return o[0]===e?o[0]+"="+encodeURIComponent(t):n});return"?"+o.join("&")}function s(){return"?"+S.id+"="+S.value+"&"+b.id+"="+b.value+"&"+q.id+"="+q.checked+"&"+L.id+"="+encodeURIComponent(L.value)}function d(e){return e.split("?").pop().split("&").reduce(function(e,t){var n=t.split("=");return e[n[0]]=decodeURIComponent(n[1]),e},{})}function f(e){return/^https?\:\/\//.test(e)||(e="//"+e),e}function p(e){for(var t=[],n=0;n<e.length;n++)t.push(e[n]);return t}var v="[data-input-vision]",h="[data-input-color]",m="[data-input-keyboard-only]",w="[data-input-url]",y="is-disabled",S=document.querySelector(v),k=p(S.options),b=document.querySelector(h),g=p(b.options),q=document.querySelector(m),L=document.querySelector(w),E=[S,b,q,L],C="pushState"in window.history,I=document.querySelector("form"),R=document.querySelector("main"),U=document.querySelector("iframe"),j=p(document.querySelectorAll("[data-collapsible-handle]")),x=document.querySelector("[data-collapsible-target]");e(),I.addEventListener("change",function(e){o(e.target,!0)},!1),I.addEventListener("submit",function(e){e.preventDefault()},!1),window.onpopstate=function(){var e=d(window.location.search);n(e)},j.forEach(function(e){e.addEventListener("click",t,!1)})}();</script>
+<script>!function(){function e(){t(),n(),o()}function t(){var e=window.location.search;if(e){var t=s(e);for(var n in t){var o=f[n],a=t[n];o&&("checkbox"==o.type.toLowerCase()?o.checked=a:(a||(a=o.options?o.options[0].value:""),o.value=a),r(o))}}}function n(){var e=document.querySelectorAll("[data-collapsible-handle]"),t=document.querySelector("[data-collapsible-target]");Array.prototype.forEach.call(e,function(e){e.addEventListener("click",function(){t.classList.toggle(h)},!1)})}function o(){f.addEventListener("change",function(e){r(e.target)},!1),f.addEventListener("submit",function(e){e.preventDefault()},!1),window.addEventListener("popstate",function(){t()})}function r(e){var t={vision:c,color:c,"keyboard-only":i,url:u};t[e.name](e),a()}function a(){var e=Array.prototype.filter.call(f.elements,function(e){return"button"!==e.nodeName.toLowerCase()});window.history.pushState("",document.title,d(e))}function c(e){for(var t=e.value,n=e.options,o=0,r=n.length;o<r;o++)p.classList.remove(n[o].value);p.classList.add(t?t:e.options[0].value)}function i(e){p.classList.toggle(m,e.checked)}function u(e){var t=l(e.value),n=document.createElement("iframe");n.src=t,v.parentNode.replaceChild(n,v),v=n}function l(e){return/^https?\:\/\//i.test(e)||(e="//"+e),e}function s(e){return e.split("?").pop().split("&").reduce(function(e,t){var n=t.split("=");return e[n[0]]=decodeURIComponent(n[1]),e},{})}function d(e){for(var t=[],n=0,o=e.length;n<o;n++){var r=e[n],a=r.value;"checkbox"!==r.type.toLowerCase()||r.checked||(a=""),t.push(r.name+"="+encodeURIComponent(a))}return"?"+t.join("&")}var f=document.querySelector("form"),p=document.querySelector("main"),v=document.querySelector("iframe"),m="is-disabled",h="is-open";e()}();</script>
 
 </body>
 </html>
