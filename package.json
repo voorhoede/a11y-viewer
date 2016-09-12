@@ -7,15 +7,16 @@
   },
   "scripts": {
     "prebuild": "rimraf dist/ && mkdirp dist/",
-    "build": "npm-run-all build:html build:css build:js",
+    "develop": "npm-run-all build:html build:css build:js",
+    "build": "cross-env NODE_ENV=production npm-run-all build:html build:css build:js",
     "build:html": "ncp ./src/index.html ./dist/index.html && ncp ./src/assets/svg-filters.svg ./dist/svg-filters.svg",
     "build:css": "node scripts/build-css.js",
     "build:js": "node scripts/build-js.js",
     "start": "http-server './dist/' -c-1 -o -p 1119",
     "watch": "npm-run-all --parallel watch:*",
-    "watch:html": "chokidar 'src/**/*.html' 'src/**/*.svg' --command 'npm run build:html'",
-    "watch:css": "chokidar 'src/**/*.css' --command 'npm run build'",
-    "watch:js": "chokidar 'src/**/*.js' --command 'npm run build'"
+    "watch:html": "chokidar 'src/**/*.html' 'src/**/*.svg' --command 'npm run develop'",
+    "watch:css": "chokidar 'src/**/*.css' --command 'npm run develop'",
+    "watch:js": "chokidar 'src/**/*.js' --command 'npm run develop'"
   },
   "keywords": [
     "a11y",
@@ -47,6 +48,7 @@
   "devDependencies": {
     "autoprefixer": "6.3.7",
     "chokidar-cli": "1.2.0",
+    "cross-env": "2.0.1",
     "cssnano": "3.7.3",
     "http-server": "0.9.0",
     "mkdirp": "0.5.1",

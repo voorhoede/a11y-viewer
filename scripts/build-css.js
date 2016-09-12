@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require('fs');
 const postcss = require('postcss');
 
@@ -6,11 +8,19 @@ const outputDir = 'dist/';
 const outputFilename = 'dist/index.html';
 const indexFile = fs.readFileSync(outputFilename);
 const placeholder = '/* INLINE_CSS_PLACEHOLDER */';
+const postCSSModules = [];
+const requiredModules = [
+    'postcss-custom-properties',
+    'autoprefixer'
+];
 
-postcss([
-    require("postcss-custom-properties"),
-    require('autoprefixer'),
-    require('cssnano')])
+if (process.env.NODE_ENV === 'production') {
+    requiredModules.push('cssnano');
+}
+
+requiredModules.forEach(module => postCSSModules.push(require(module)));
+
+postcss(postCSSModules)
     .process(fs.readFileSync(inputFilename), {
         from: inputFilename,
         to: outputDir // file path relative to output dir
