@@ -13,8 +13,14 @@ postcss([
     require('cssnano')])
     .process(fs.readFileSync(inputFilename), {
         from: inputFilename,
-        to: outputDir, // file path relative to output dir
+        to: outputDir // file path relative to output dir
     })
     .then(function (result) {
         fs.writeFileSync(outputFilename, indexFile.toString().replace(placeholder, result.css));
+    })
+    .catch(function handleError (error) {
+        if (error.message) {
+            console.log(error.message);
+            process.exit(1);
+        }
     });
