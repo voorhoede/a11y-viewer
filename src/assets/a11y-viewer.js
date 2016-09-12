@@ -82,16 +82,13 @@
 
     // Update the address bar with input/values excluding the submit button
     function updateUrl() {
-        // Only update the URL when the history API is supported
-        if ('pushState' in window.history) {
-            // Exclude the submit button
-            var inputs = arrayFrom(FORM.elements).filter(function (element) {
-                return (element.nodeName.toLowerCase() !== 'button');
-            });
+        // Exclude the submit button
+        var inputs = arrayFrom(FORM.elements).filter(function (element) {
+            return (element.nodeName.toLowerCase() !== 'button');
+        });
 
-            // Update address bar
-            window.history.pushState('', document.title, inputsToQueryString(inputs));
-        }
+        // Update address bar
+        window.history.pushState('', document.title, inputsToQueryString(inputs));
     }
 
     // Remove all simulation classes and add the selected option
