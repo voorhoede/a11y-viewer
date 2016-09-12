@@ -40,10 +40,10 @@
     }
 
     function initCollapsible() {
-        var collapsibleHandlers = arrayFrom(document.querySelectorAll('[data-collapsible-handle]'));
+        var collapsibleHandlers = document.querySelectorAll('[data-collapsible-handle]');
         var collapsibleTarget = document.querySelector('[data-collapsible-target]');
         
-        collapsibleHandlers.forEach(function (collapsible) {
+        Array.prototype.forEach.call(collapsibleHandlers, function (collapsible) {
             collapsible.addEventListener('click', function() {
                 collapsibleTarget.classList.toggle(OPEN_CLASS);
             }, false);
@@ -83,7 +83,7 @@
     // Update the address bar with input/values excluding the submit button
     function updateUrl() {
         // Exclude the submit button
-        var inputs = arrayFrom(FORM.elements).filter(function (element) {
+        var inputs = Array.prototype.filter.call(FORM.elements, function (element) {
             return (element.nodeName.toLowerCase() !== 'button');
         });
 
@@ -161,20 +161,6 @@
         }
 
         return '?' + queryString.join('&');
-    }
-
-    /**
-     * Create an iterable array from an array like object
-     *
-     * @param arrayLikeObject
-     * @returns {Array} given array like object as array
-     */
-    function arrayFrom(arrayLikeObject) {
-        var array = [];
-        for (var i = 0; i < arrayLikeObject.length; i++) {
-            array.push(arrayLikeObject[i]);
-        }
-        return array;
     }
 
     // Kick off application
